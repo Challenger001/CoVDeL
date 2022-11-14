@@ -1,0 +1,22 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug Target",
+      "type": "cppdbg",
+      "request": "launch",
+      "cwd": ".",
+      "program": "${workspaceFolder}/bin/${input:pickTarget}",
+      "args": [],
+      "stopAtEntry": true,
+    },
+  ],
+  "inputs": [
+    {
+      "id": "pickTarget",
+      "type": "pickString",
+      "description": "Pick execution target ...",
+      "options": []
+    },
+  ]
+}

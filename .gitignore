@@ -1,0 +1,4 @@
+# CMake build files and output
+build/
+bin/
+lib/

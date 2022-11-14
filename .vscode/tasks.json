@@ -1,0 +1,63 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "CMake",
+      "type": "shell",
+      "options": {
+        "cwd": "build"
+      },
+      "command": "bash -c \"${input:pickCMakeTask}\"",
+      "group": "build"
+    },
+    {
+      "label": "Run Target",
+      "type": "shell",
+      "command": "bin/${input:pickTarget}",
+      "group": "build"
+    },
+    {
+      "label": "Build and Run",
+      "dependsOn": [
+        "CMake",
+        "Run Target"
+      ],
+      "dependsOrder": "sequence",
+      "group": "build"
+    },
+  ],
+  "inputs": [
+    {
+      "id": "pickCMakeTask",
+      "type": "command",
+      "command": "extension.commandvariable.pickStringRemember",
+      "args": {
+        "description": "Pick CMake task",
+        "options": [
+          [
+            "Configure\t\t",
+            "ccmake .."
+          ],
+          [
+            "Build / Update\t\t",
+            "make install"
+          ],
+          [
+            "Clean\t\t\t",
+            "rm -rf *"
+          ],
+          [
+            "Full\t\t\t",
+            "rm -rf * && ccmake .. && make install"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "pickTarget",
+      "type": "pickString",
+      "description": "Pick execution target ...",
+      "options": []
+    },
+  ]
+}
