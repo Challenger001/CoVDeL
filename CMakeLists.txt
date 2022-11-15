@@ -19,6 +19,9 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
   # add source code
   add_subdirectory(src)
 
+  # add tests
+  add_subdirectory(tests)
+
   if(CMAKE_EXPORT_COMPILE_COMMANDS)
     install(FILES ${CMAKE_BINARY_DIR}/compile_commands.json
       DESTINATION ${CMAKE_SOURCE_DIR}/.vscode)

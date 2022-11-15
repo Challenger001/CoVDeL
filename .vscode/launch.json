@@ -16,7 +16,9 @@
       "id": "pickTarget",
       "type": "pickString",
       "description": "Pick execution target ...",
-      "options": []
+      "options": [
+        "dimension"
+      ]
     },
   ]
 }

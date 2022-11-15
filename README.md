@@ -1,9 +1,10 @@
 # CoVDeL
 
 CoVDeL is a C++ library that provides implementations of classical computer vision and common image
-processing algorithms, along with support for neural networks and deep learning variants. No major
-third party libraries are used for the above implementations. C++17 standard is used in the project.
-As far as possible, everything has been implemented from scratch.
+processing algorithms, along with support for neural networks and deep learning variants. Although
+the project's software architecture is inspired from popular libraries like **NumPy**, **OpenCV**,
+**PIL**, **PyTorch** and **Tensorflow**, everything has been implemented from scratch and no major
+third party libraries were used. This project uses ISO C++17 standard.
 
 ## Modules
 
