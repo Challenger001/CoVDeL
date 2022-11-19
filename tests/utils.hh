@@ -24,6 +24,7 @@
 class UnitTestRunner {
 public:
   UnitTestRunner(const std::string &class_file, const std::string &class_name)
+    : m_passed { 0 }, m_total { 0 }
   {
     std::cout << "Testing '" << class_name << "' [" << class_file << "]\n";
   }
@@ -32,6 +33,10 @@ public:
   {
     std::cout << "Done.\nPassed : " << m_passed << '/' << m_total << '\n';
   }
+
+  unsigned passed() const noexcept { return m_passed; }
+
+  unsigned total() const noexcept { return m_total; }
 
   template<typename... _TestFuncArgs>
   void run(

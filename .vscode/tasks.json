@@ -93,7 +93,8 @@
       "type": "pickString",
       "description": "Pick execution target ...",
       "options": [
-        "dimension"
+        "dimension",
+        "multiarray"
       ]
     },
     {
@@ -101,7 +102,8 @@
       "type": "pickString",
       "description": "Pick test to compile ...",
       "options": [
-        "dimension"
+        "dimension",
+        "multiarray"
       ]
     },
   ]

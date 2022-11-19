@@ -22,36 +22,29 @@
 
 namespace covdel::ma
 {
+  // concise type aliases
+  using D = dimension;
+  using I = index;
+
   // convenience type aliases
 
-  struct bool8 : multiarray<dtype::bool8> { };
-
-  struct int8 : multiarray<dtype::int8> { };
-
-  struct int16 : multiarray<dtype::int16> { };
-
-  struct int32 : multiarray<dtype::int32> { };
-
-  struct int64 : multiarray<dtype::int64> { };
-
-  struct uint8 : multiarray<dtype::uint8> { };
-
-  struct uint16 : multiarray<dtype::uint16> { };
-
-  struct uint32 : multiarray<dtype::uint32> { };
-
-  struct uint64 : multiarray<dtype::uint64> { };
-
-  struct float32 : multiarray<dtype::float32> { };
-
-  struct float64 : multiarray<dtype::float64> { };
+  using bool8   = multiarray<dtype::bool8>;
+  using int8    = multiarray<dtype::int8>;
+  using int16   = multiarray<dtype::int16>;
+  using int32   = multiarray<dtype::int32>;
+  using int64   = multiarray<dtype::int64>;
+  using uint8   = multiarray<dtype::uint8>;
+  using uint16  = multiarray<dtype::uint16>;
+  using uint32  = multiarray<dtype::uint32>;
+  using uint64  = multiarray<dtype::uint64>;
+  using float32 = multiarray<dtype::float32>;
+  using float64 = multiarray<dtype::float64>;
 
   // multiarray factory template
-  // TODO add perfect forwarding to delegate construction task without overloading
-  template<typename _MultiArray = float64>
-  _MultiArray array(const dimension &dim)
+  template<typename _MultiArray, typename... _Args>
+  _MultiArray array(_Args &&...args)
   {
-    return _MultiArray { dim };
+    return _MultiArray(std::forward<_Args>(args)...);
   }
 
 }  // namespace covdel::ma

@@ -17,7 +17,8 @@
       "type": "pickString",
       "description": "Pick execution target ...",
       "options": [
-        "dimension"
+        "dimension",
+        "multiarray"
       ]
     },
   ]
