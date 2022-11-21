@@ -19,11 +19,11 @@ bool operators()
 {
   auto d { array<int16>(D(2, 2), 4) };
   ASSERT(d1 == d1 && d != d3 && d2 == d2);
-  ASSERT((d3[{ 0, 0 }] == 6));
-  ASSERT((d3[{ 0, 1 }] == 6));
-  ASSERT((d3[{ 1, 0 }] == 6));
-  ASSERT((d3[{ 1, 1 }] == 6));
-  EXPECT_THROW(std::invalid_argument, (d3[{ 2, 2 }]););
+  ASSERT(CODE(d3[{ 0, 0 }] == 6));
+  ASSERT(CODE(d3[{ 0, 1 }] == 6));
+  ASSERT(CODE(d3[{ 1, 0 }] == 6));
+  ASSERT(CODE(d3[{ 1, 1 }] == 6));
+  EXPECT_THROW(std::out_of_range, CODE(d3[{ 2, 2 }]););
   ASSERT(bool(d1));
   ASSERT(!bool(int16 { D(1, 0) }));
   TEST_SUCCESS;
@@ -34,7 +34,7 @@ bool construction()
   auto t1 { array<int32>(D(2, 2), 6) };           // factory
   int32 t2 { D(2, 2), 6 };                        // alias
   multiarray<dtype::int32> t3 { D { 2, 2 }, 6 };  // constructor
-  ASSERT(t1 == t2 && t2 == t3 && t1 == t3);
+  ASSERT(t1 == t2 && t2 == t3 && t3 == t1);
   TEST_SUCCESS;
 }
 
@@ -42,7 +42,6 @@ bool getters()
 {
   ASSERT(d5.dim().str() == "( 4 2 )");
   ASSERT(d8.type() == datatype::uint32);
-  ASSERT((d10.shape() == std::vector<size_t> { 1, 2, 3, 4 }));
   ASSERT(d11.ndims() == 4 && d11.size() == 48 && d11.is_base());
   // TODO add str() method after implementing
   TEST_SUCCESS;
@@ -51,12 +50,10 @@ bool getters()
 bool copy_move_semantics()
 {
   auto t1 { d2 };
-  auto t2_ { d3 };
-  auto t2 { std::move(t2_) };
+  auto t2_ { d3 }, t2 { std::move(t2_) };
   ASSERT(!t1.is_base() && !t2.is_base());
   ASSERT(t1 == d2 && t2 == d3);
-  t1 = d2;
-  t2 = int16 { D(2, 2), 6 };
+  t1 = d2, t2 = int16 { D(2, 2), 6 };
   ASSERT(!t1.is_base() && t2.is_base());
   ASSERT(t1 == d2 && t2 == d3);
   TEST_SUCCESS;

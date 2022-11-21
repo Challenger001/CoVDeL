@@ -31,9 +31,13 @@ source files under `src/ma` directory and in public headers under `include/covde
   * `dtype` namespace holds the base data type class and its children which are used in the template
   initialization of `multiarray`, as well as a compile-time validator template to check if the
   template type argument is supported.
+* `dimension.hh` `dimension.cc`
+  * `_dsi` is the base class responsible for handling all dimensionality-related behavior with
+  respect to the array classes.
+  * `dimension` is a child class of `_dsi`, which holds the shape of an array.
+  * `index` is a child class of `_dsi`, which is used to index an array.
 * `multiarray.hh` `multiarray.cc`
-  * `dimension` class is responsible for handling dimensionality behavior with respect to the array
-  classes.
+  * `scalar` class template is a simple container for the native type that the template type stores.
   * `multiarray` class template is the core array class which is templated by the type of data it is
   capable of storing. It holds the data in a contiguous array, and a mutable `dimension` object.
 * `factory.hh`

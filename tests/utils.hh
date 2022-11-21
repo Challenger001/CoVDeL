@@ -1,20 +1,24 @@
 #ifndef __COVDEL_TESTS_UTILS_HH_1668199044__
 #define __COVDEL_TESTS_UTILS_HH_1668199044__
 
+// for parsing complex code with commas
+#define CODE(...) __VA_ARGS__
+
 // assert macro, return if condition is false
 #define ASSERT(condition) \
  if (!(condition)) return false;
 
 // check if the input code snippet throws the expected exception
 #define EXPECT_THROW(exception, code) \
- bool thrown { false };               \
- try {                                \
-  code                                \
- }                                    \
- catch (const exception &) {          \
-  thrown = true;                      \
- }                                    \
- if (!thrown) return false;
+ while (true) {                       \
+  try {                               \
+   code                               \
+  }                                   \
+  catch (const exception &) {         \
+   break;                             \
+  }                                   \
+  return false;                       \
+ }
 
 // placeholder for successful return of test function
 #define TEST_SUCCESS return true;
@@ -26,7 +30,7 @@ public:
   UnitTestRunner(const std::string &class_file, const std::string &class_name)
     : m_passed { 0 }, m_total { 0 }
   {
-    std::cout << "Testing '" << class_name << "' [" << class_file << "]\n";
+    std::cout << "Testing: " << class_name << " [" << class_file << "]\n";
   }
 
   ~UnitTestRunner()

@@ -1,4 +1,5 @@
 list(APPEND MA_SOURCE_FILES
+  dimension.cc
   multiarray.cc
 )
 
